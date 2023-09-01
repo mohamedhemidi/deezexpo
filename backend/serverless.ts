@@ -1,7 +1,7 @@
 import type { AWS } from "@serverless/typescript";
 
 import { searchtracks } from "@functions/tracks";
-import { viewartist } from "@functions/artist";
+import { viewartist, toptracks, topalbums } from "@functions/artist";
 
 const serverlessConfiguration: AWS = {
   service: "backend",
@@ -24,7 +24,7 @@ const serverlessConfiguration: AWS = {
     },
   },
   // import the function via paths
-  functions: { searchtracks, viewartist },
+  functions: { searchtracks, viewartist, toptracks, topalbums },
   package: { individually: true },
   custom: {
     esbuild: {

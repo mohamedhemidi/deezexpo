@@ -17,3 +17,36 @@ export const viewartist = {
     },
   ],
 };
+
+export const toptracks = {
+  handler: `${handlerPath(__dirname)}/toptracks.toptracks`,
+  events: [
+    {
+      http: {
+        method: 'post',
+        path: `toptracks`,
+        request: {
+          schemas: {
+            'application/json': schema,
+          },
+        },
+      },
+    },
+  ],
+};
+export const topalbums = {
+  handler: `${handlerPath(__dirname)}/topalbums.topalbums`,
+  events: [
+    {
+      http: {
+        method: 'post',
+        path: `topalbums`,
+        request: {
+          schemas: {
+            'application/json': schema,
+          },
+        },
+      },
+    },
+  ],
+};

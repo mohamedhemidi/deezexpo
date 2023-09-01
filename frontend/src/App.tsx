@@ -1,16 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Header } from "./components/Layouts/Header";
+import { Home } from "./pages/Home";
+import { ArtistView } from "./pages/ArtistView";
+import { styled } from "styled-components";
+
+const Content = styled.main`
+  padding: 1rem;
+`;
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <h1>DeezExpo</h1>
+      <Header />
+      <Content>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/artist" element={<ArtistView />} />
+          </Routes>
+        </Router>
+      </Content>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

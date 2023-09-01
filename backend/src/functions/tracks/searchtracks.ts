@@ -6,7 +6,7 @@ import {
 import schema from "./schema";
 import { getTracksList } from "src/services/searchtracks";
 
-const searchtracks: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (
+const handler: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (
   event
 ) => {
   try {
@@ -21,4 +21,4 @@ const searchtracks: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (
   }
 };
 
-export const main = middyfy(searchtracks);
+export const searchtracks = middyfy(handler);

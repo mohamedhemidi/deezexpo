@@ -6,7 +6,7 @@ import {
 import schema from "./schema";
 import { viewArtist } from "src/services/viewartist";
 
-const viewartist: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (
+const handler: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (
   event
 ) => {
 
@@ -28,4 +28,4 @@ const viewartist: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (
   }
 };
 
-export const main = middyfy(viewartist);
+export const viewartist = middyfy(handler);

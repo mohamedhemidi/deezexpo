@@ -1,7 +1,7 @@
 import type { AWS } from "@serverless/typescript";
 
-import searchtracks from "@functions/tracks";
-import viewartist from "@functions/artist";
+import { searchtracks } from "@functions/tracks";
+import { viewartist } from "@functions/artist";
 
 const serverlessConfiguration: AWS = {
   service: "backend",

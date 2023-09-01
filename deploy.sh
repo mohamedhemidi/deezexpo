@@ -22,6 +22,11 @@ npm i
 sls deploy --aws-profile $1
 
 
+cd ../frontend
+
+npm i
+
+npm run dev
 
 cat << "EOF"
 

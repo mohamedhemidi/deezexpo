@@ -1,1 +1,3 @@
-export { default as hello } from './hello';
+// Search for tracks
+export { default as searchtracks } from './tracks';
+

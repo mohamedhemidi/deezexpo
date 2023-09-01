@@ -1,6 +1,6 @@
 import type { AWS } from '@serverless/typescript';
 
-import hello from '@functions/hello';
+import searchtracks from '@functions/tracks';
 
 const serverlessConfiguration: AWS = {
   service: 'backend',
@@ -10,17 +10,21 @@ const serverlessConfiguration: AWS = {
     name: 'aws',
     runtime: 'nodejs14.x',
     profile: 'local-dev',
+    region: "eu-west-1",
     apiGateway: {
       minimumCompressionSize: 1024,
       shouldStartNameWithService: true,
     },
     environment: {
+      ALLOW_ORIGIN: "*",
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
+      SEARCH_URL: 'https://api.deezer.com/search/',
+      SEARCH_LIMIT: '5',
     },
   },
   // import the function via paths
-  functions: { hello },
+  functions: { searchtracks },
   package: { individually: true },
   custom: {
     esbuild: {

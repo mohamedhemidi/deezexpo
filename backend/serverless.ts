@@ -1,15 +1,16 @@
-import type { AWS } from '@serverless/typescript';
+import type { AWS } from "@serverless/typescript";
 
-import searchtracks from '@functions/tracks';
+import searchtracks from "@functions/tracks";
+import viewartist from "@functions/artist";
 
 const serverlessConfiguration: AWS = {
-  service: 'backend',
-  frameworkVersion: '3',
-  plugins: ['serverless-esbuild'],
+  service: "backend",
+  frameworkVersion: "3",
+  plugins: ["serverless-esbuild"],
   provider: {
-    name: 'aws',
-    runtime: 'nodejs14.x',
-    profile: 'local-dev',
+    name: "aws",
+    runtime: "nodejs14.x",
+    profile: "local-dev",
     region: "eu-west-1",
     apiGateway: {
       minimumCompressionSize: 1024,
@@ -17,24 +18,23 @@ const serverlessConfiguration: AWS = {
     },
     environment: {
       ALLOW_ORIGIN: "*",
-      AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
-      NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
-      SEARCH_URL: 'https://api.deezer.com/search/',
-      SEARCH_LIMIT: '5',
+      AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1",
+      NODE_OPTIONS: "--enable-source-maps --stack-trace-limit=1000",
+      SEARCH_LIMIT: "5",
     },
   },
   // import the function via paths
-  functions: { searchtracks },
+  functions: { searchtracks, viewartist },
   package: { individually: true },
   custom: {
     esbuild: {
       bundle: true,
       minify: false,
       sourcemap: true,
-      exclude: ['aws-sdk'],
-      target: 'node14',
-      define: { 'require.resolve': undefined },
-      platform: 'node',
+      exclude: ["aws-sdk"],
+      target: "node14",
+      define: { "require.resolve": undefined },
+      platform: "node",
       concurrency: 10,
     },
   },

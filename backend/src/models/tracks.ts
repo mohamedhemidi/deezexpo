@@ -1,6 +1,7 @@
 export default interface Track {
     title : string,
     duration: number,
+    picture: string,
     artist : Artist[]
     album : Album[]
 }

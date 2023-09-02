@@ -1,7 +1,19 @@
 import { Card } from "../../components/Card";
 import { Section } from "../../components/Section";
+import { useEffect } from "react";
+import { searchTracks } from "../../reducers/tracksReducer";
+import {  useAppDispatch ,useAppSelector } from "../../utils/hooks";
+import {  } from "../../../store";
 
 const Home = () => {
+  const dispatch = useAppDispatch();
+  const data = useAppSelector((state) => state.tracks);
+
+  useEffect(() => {
+    dispatch(searchTracks("stay"));
+  }, []);
+
+  console.log(data);
   return (
     <>
       <Section title="Most trending Tracks">

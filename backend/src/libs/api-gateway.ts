@@ -18,9 +18,6 @@ export const formatJSONResponse = (
   response: Record<string, unknown>
 ) => {
   return {
-    headers: {
-      "Access-Control-Allow-Origin": process.env.ALLOW_ORIGIN,
-    },
     statusCode,
     body: JSON.stringify(response),
   };

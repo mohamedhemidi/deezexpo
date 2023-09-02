@@ -18,7 +18,7 @@ const SearchInput = styled.input`
 const SearchBox = () => {
   return (
     <Container>
-      <SearchInput type="text" />
+      <SearchInput placeholder="Search tracks" type="text" />
       <RoundButtonIcon icon={<PiMagnifyingGlassBold />} />
     </Container>
   );

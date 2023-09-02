@@ -6,7 +6,7 @@ import { ArtistView } from "./pages/ArtistView";
 import { styled } from "styled-components";
 
 const Content = styled.main`
-  padding: 1rem;
+  padding: 2rem;
 `;
 
 function App() {

@@ -10,6 +10,7 @@ import { styled } from "styled-components";
 import { Loading } from "../../components/Loading";
 import moment from "moment";
 import { Card } from "../../components/Card";
+import { GetArtistResponse } from "../../types/artists";
 
 const Container = styled.section`
   display: flex;
@@ -30,7 +31,7 @@ const SectionBottom = styled.section`
   flex-wrap: wrap;
   gap: 2rem;
 `;
-const ArtistInfo = styled.section`
+const ArtistInfo = styled.section<{ picture: string }>`
   position: relative;
   width: 60%;
   height: 20rem;
@@ -101,19 +102,26 @@ const TrackItem = styled.h3`
   margin-top: 1rem;
 `;
 
+interface Artists {
+  data: GetArtistResponse;
+  loading: boolean;
+  error: null | string;
+}
+
 const ArtistView = () => {
   const dispatch = useAppDispatch();
   const params = useParams();
   const { id } = params;
 
-  const { data, loading } = useAppSelector((state) => state.artist);
+  const { data, loading } = useAppSelector(
+    (state: any): Artists => state.artist
+  );
 
   useEffect(() => {
-    dispatch(viewArtist(parseInt(id)));
-    dispatch(topTracks(parseInt(id)));
-    dispatch(topAlbums(parseInt(id)));
+    dispatch(viewArtist(parseInt(id!)));
+    dispatch(topTracks(parseInt(id!)));
+    dispatch(topAlbums(parseInt(id!)));
   }, []);
-  console.log(data);
   if (/^\d+$/.test(id!) === false) {
     return <h1>Oops! Invalid artist id</h1>;
   }
@@ -130,7 +138,7 @@ const ArtistView = () => {
         </ArtistInfo>
         <TopTracks>
           <h2>Top Tracks:</h2>
-          {data.top_tracks.map((i) => {
+          {data.top_tracks.map((i: any) => {
             return (
               <TrackItem key={i}>
                 <h5>{i.title}</h5>
@@ -141,9 +149,10 @@ const ArtistView = () => {
         </TopTracks>
       </SectionTop>
       <SectionBottom>
-        {data.top_albums.map((alb) => {
+        {data.top_albums.map((alb: any) => {
           return (
             <Card
+              id={alb.id}
               type="album"
               artist={data.info.name}
               title={alb.title}

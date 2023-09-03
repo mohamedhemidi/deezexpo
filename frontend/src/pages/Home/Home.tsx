@@ -3,29 +3,11 @@ import { Section } from "../../components/Section";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../utils/hooks";
 import { getTrendingTracks } from "../../services/tracks.services";
+import { GetTrackResponose } from "../../types/tracks";
 
-interface Track {
-  title: string;
-  duration: number;
-  picture: string;
-  artist: Artist[];
-  album: Album[];
-}
 
-interface Album {
-  id: number;
-}
-interface Artist {
-  id: number;
-  name: string;
-}
-
-interface GetTrackResponose {
-  trending: Track[];
-  search: Track[];
-}
 interface Tracks {
-  data: GetTrackResponose[];
+  data: GetTrackResponose;
   loading: boolean;
   error: null | string;
 }
@@ -42,7 +24,7 @@ const Home = () => {
   return (
     <>
       {data.search && data.search.length ? (
-        <Section title="Search Results for" loading={loading}>
+        <Section title={`Search Results for ${data.keyword}`} loading={loading}>
           {data.search &&
             data.search.length &&
             data.search.map((t) => {

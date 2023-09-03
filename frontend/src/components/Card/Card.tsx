@@ -3,7 +3,7 @@ import moment from "moment";
 import { Link } from "react-router-dom";
 interface Props {
   id: number;
-  artistId?: string;
+  artistId?: number;
   type: string;
   title: string;
   picture: string;

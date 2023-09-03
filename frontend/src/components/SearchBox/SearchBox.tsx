@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import { RoundButtonIcon } from "../Core/Buttons";
 import { PiMagnifyingGlassBold } from "react-icons/Pi";
+import { useState } from "react";
+import { useAppDispatch } from "../../utils/hooks";
+import { searchTracks } from "../../services/tracks.services";
 
 const Container = styled.div`
   display: flex;
@@ -16,10 +19,26 @@ const SearchInput = styled.input`
 `;
 
 const SearchBox = () => {
+  const dispatch = useAppDispatch();
+
+  const [search, setSearch] = useState("");
+
+  const handleSearchSubmit = () => {
+    if (search.length) {
+      dispatch(searchTracks(search));
+    }
+  };
   return (
     <Container>
-      <SearchInput placeholder="Search tracks" type="text" />
-      <RoundButtonIcon icon={<PiMagnifyingGlassBold />} />
+      <SearchInput
+        onChange={(e) => setSearch(e.target.value)}
+        placeholder="Search tracks"
+        type="text"
+      />
+      <RoundButtonIcon
+        onClick={handleSearchSubmit}
+        icon={<PiMagnifyingGlassBold />}
+      />
     </Container>
   );
 };

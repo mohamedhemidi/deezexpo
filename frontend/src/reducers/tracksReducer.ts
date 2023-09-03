@@ -4,7 +4,7 @@ import { getTrendingTracks, searchTracks } from "../services/tracks.services";
 const initialState = {
   data: {
     trending: [],
-    search: []
+    search: [],
   },
   loading: false,
   error: null as string | null,
@@ -39,8 +39,7 @@ const tracksSlice = createSlice({
       .addCase(getTrendingTracks.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message || "An error occurred";
-      })
-      ;
+      });
   },
 });
 

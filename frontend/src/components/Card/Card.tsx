@@ -1,6 +1,9 @@
 import { styled } from "styled-components";
 import moment from "moment";
+import { Link } from "react-router-dom";
 interface Props {
+  id: number;
+  artistId?: string;
   type: string;
   title: string;
   picture: string;
@@ -21,6 +24,7 @@ const Container = styled.div`
   box-shadow: inset 0 4px 7px 1px #ffffff,
     inset 0 -5px 20px rgba(173, 186, 204, 0.25), 0 2px 6px rgba(0, 21, 64, 0.14),
     0 10px 20px rgba(0, 21, 64, 0.05);
+  cursor: pointer;
 `;
 const CardTop = styled.div`
   width: 100%;
@@ -77,7 +81,15 @@ const Picture = styled.div<{ picture: string }>`
   }
 `;
 
-const Card = ({ type, title, picture, artist, nb_tracks, duration }: Props) => {
+const Card = ({
+  type,
+  title,
+  picture,
+  artist,
+  artistId,
+  nb_tracks,
+  duration,
+}: Props) => {
   return (
     <Container>
       <CardTop>
@@ -85,7 +97,9 @@ const Card = ({ type, title, picture, artist, nb_tracks, duration }: Props) => {
         <Picture picture={picture}></Picture>
       </CardTop>
       <CardBottom>
-        <h4>By {artist}</h4>
+        <h4>
+          By <Link to={`/artist/${artistId}`}>{artist}</Link>
+        </h4>
         {type === "track" ? (
           <h4>{duration && moment.utc(duration * 1000).format("mm:ss")}</h4>
         ) : (

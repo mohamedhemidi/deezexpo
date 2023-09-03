@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import { SearchBox } from "../../SearchBox";
+import { Link } from "react-router-dom";
 
 const Container = styled.header`
+  position: sticky;
+  top: 0;
+  z-index: 50;
   background-color: #ffffff;
   border-bottom: 1px solid #0000000d;
   display: flex;
@@ -20,7 +24,9 @@ const Logo = styled.h1``;
 const Header = () => {
   return (
     <Container>
-      <Logo>{import.meta.env.VITE_APP_NAME}</Logo>
+      <Logo>
+        <a href={"/"}>{import.meta.env.VITE_APP_NAME}</a>
+      </Logo>
       <SearchBox />
     </Container>
   );

@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getTrendingTracks, searchTracks } from "../services/tracks.services";
 import { topAlbums, topTracks, viewArtist } from "../services/artist.services";
 
 const initialState = {

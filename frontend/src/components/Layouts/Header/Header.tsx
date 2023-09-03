@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { SearchBox } from "../../SearchBox";
-import { Link } from "react-router-dom";
 
 const Container = styled.header`
   position: sticky;

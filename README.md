@@ -1,4 +1,3 @@
-
 # DeezExpo
 This project is an application to explore Deezer tracks and artists information
 as well as their top tracks and albums
@@ -35,7 +34,7 @@ cd deezexpo
 
 ## Demo
 
-Insert gif or link to demo
+https://deezexpo-frontend.vercel.app
 
 
 ## Runtime versions :

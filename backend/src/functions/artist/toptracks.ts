@@ -16,9 +16,9 @@ const handler: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (
   }
 
   try {
-    const data = await topTracks(event.body.id);
+    const {data} = await topTracks(event.body.id);
     return formatJSONResponse(200, {
-      items: data,
+      data,
     });
   } catch (error) {
     return formatJSONResponse(400, {

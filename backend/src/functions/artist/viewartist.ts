@@ -9,7 +9,6 @@ import { viewArtist } from "src/services/viewartist";
 const handler: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (
   event
 ) => {
-
   if (!event.body.id || typeof event.body.id !== "number") {
     return formatJSONResponse(400, {
       error: "ID is missing or invalid",
@@ -17,9 +16,9 @@ const handler: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (
   }
 
   try {
-    const data = await viewArtist(event.body.id);
+    const data  = await viewArtist(event.body.id);
     return formatJSONResponse(200, {
-      items: data,
+      data,
     });
   } catch (error) {
     return formatJSONResponse(400, {

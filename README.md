@@ -28,6 +28,8 @@ The following bash script will use npm to install backend packages after that it
 For the frontend part it will install as well the packages installing using npm the run the react project locally:
 
 ```
+cd deezexpo
+
 ./deploy.sh [your_aws_profile_name]
 ```
 
@@ -39,4 +41,5 @@ Insert gif or link to demo
 ## Runtime versions :
 
 - Node.js : v18.16.0
-- Serverless Framework Version : 3.34.0
+- Serverless Framework Version : v3.34.0
+- React.js : v18.2.0

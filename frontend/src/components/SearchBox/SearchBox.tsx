@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { RoundButtonIcon } from "../Core/Buttons";
-import { PiMagnifyingGlassBold } from "react-icons/Pi";
+import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
 import { useAppDispatch } from "../../utils/hooks";
 import { searchTracks } from "../../services/tracks.services";
@@ -37,7 +37,7 @@ const SearchBox = () => {
       />
       <RoundButtonIcon
         onClick={handleSearchSubmit}
-        icon={<PiMagnifyingGlassBold />}
+        icon={<FaSearch />}
       />
     </Container>
   );

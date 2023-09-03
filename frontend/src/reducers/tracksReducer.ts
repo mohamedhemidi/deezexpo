@@ -1,19 +1,11 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-import { PATH } from "../constants/environements";
-
-export const searchTracks = createAsyncThunk(
-  "tracks/searchTracks",
-  async (query: string) => {
-    const response = await axios.post(PATH.searchTracks, {
-      query: query,
-    });
-    return response.data;
-  }
-);
+import { createSlice } from "@reduxjs/toolkit";
+import { getTrendingTracks, searchTracks } from "../services/tracks.services";
 
 const initialState = {
-  data: [],
+  data: {
+    trending: [],
+    search: []
+  },
   loading: false,
   error: null as string | null,
 };
@@ -30,12 +22,25 @@ const tracksSlice = createSlice({
       })
       .addCase(searchTracks.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload;
+        state.data.search = action.payload.data;
       })
       .addCase(searchTracks.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message || "An error occurred";
-      });
+      })
+      .addCase(getTrendingTracks.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getTrendingTracks.fulfilled, (state, action) => {
+        state.loading = false;
+        state.data.trending = action.payload.data;
+      })
+      .addCase(getTrendingTracks.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message || "An error occurred";
+      })
+      ;
   },
 });
 

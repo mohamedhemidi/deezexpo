@@ -1,8 +1,10 @@
 import { styled } from "styled-components";
+import { Loading } from "../Loading";
 
 interface Props {
   title: string;
   children: React.ReactNode;
+  loading: boolean;
 }
 const Container = styled.section`
   display: flex;
@@ -24,7 +26,10 @@ const SectionContent = styled.div`
   gap: 2rem;
   padding: 0;
 `;
-const Section = ({ title, children }: Props) => {
+const Section = ({ title, children, loading }: Props) => {
+  if(loading === true) {
+    return <Loading />
+  }
   return (
     <Container>
       <Title>{title}</Title>

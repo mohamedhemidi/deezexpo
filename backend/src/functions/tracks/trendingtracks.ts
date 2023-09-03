@@ -4,13 +4,11 @@ import {
   formatJSONResponse,
 } from "@libs/api-gateway";
 import schema from "./schema";
-import { getTracksList } from "src/services/searchtracks";
+import { getTrendedTracks } from "src/services/trendingtracks";
 
-const handler: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (
-  event
-) => {
+const handler: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async () => {
   try {
-    const { data } = await getTracksList(event.body.query);
+    const { data } = await getTrendedTracks();
     return formatJSONResponse(200, {
       data,
     });
@@ -21,4 +19,4 @@ const handler: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (
   }
 };
 
-export const searchtracks = middyfy(handler);
+export const trendingtracks = middyfy(handler);

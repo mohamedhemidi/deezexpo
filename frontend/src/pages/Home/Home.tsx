@@ -1,38 +1,59 @@
 import { Card } from "../../components/Card";
 import { Section } from "../../components/Section";
 import { useEffect } from "react";
-import { searchTracks } from "../../reducers/tracksReducer";
-import {  useAppDispatch ,useAppSelector } from "../../utils/hooks";
-import {  } from "../../../store";
+import { useAppDispatch, useAppSelector } from "../../utils/hooks";
+import {
+  getTrendingTracks,
+  searchTracks,
+} from "../../services/tracks.services";
 
 const Home = () => {
   const dispatch = useAppDispatch();
-  const data = useAppSelector((state) => state.tracks);
+
+ 
+
+  const { data, loading } = useAppSelector(
+    (state) => state.tracks
+  );
 
   useEffect(() => {
-    dispatch(searchTracks("stay"));
+    dispatch(searchTracks("Happy"));
+  }, []);
+  useEffect(() => {
+    dispatch(getTrendingTracks());
   }, []);
 
-  console.log(data);
   return (
     <>
-      <Section title="Most trending Tracks">
-        <Card
-          type="track"
-          title="Hello"
-          artist="Adele"
-          duration={295}
-          picture="https://e-cdns-images.dzcdn.net/images/artist/e5fc443d2abc03b487234ba4de65a001/500x500-000000-80-0-0.jpg"
-        />
+      <Section title="Most trending Tracks" loading={loading}>
+        {data.trending &&
+          data.trending.length &&
+          data.trending.map((t) => {
+            return (
+              <Card
+                type="track"
+                title={t.title}
+                artist={t.artist.name}
+                duration={t.duration}
+                picture={t.artist.picture_big}
+              />
+            );
+          })}
       </Section>
-      <Section title="Most trending Albums">
-        <Card
-          type="album"
-          title="The Marshall Mathers LP"
-          artist="Eminem"
-          nb_tracks={18}
-          picture="https://e-cdns-images.dzcdn.net/images/artist/19cc38f9d69b352f718782e7a22f9c32/500x500-000000-80-0-0.jpg"
-        />
+      <Section title="Search Results for" loading={loading}>
+        {data.search &&
+          data.search.length &&
+          data.search.map((t) => {
+            return (
+              <Card
+                type="track"
+                title={t.title}
+                artist={t.artist.name}
+                duration={t.duration}
+                picture={t.artist.picture_big}
+              />
+            );
+          })}
       </Section>
     </>
   );

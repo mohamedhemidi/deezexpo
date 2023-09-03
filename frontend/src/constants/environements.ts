@@ -9,5 +9,6 @@ const BASE_URL  = {
 type ObjectKey = keyof typeof BASE_URL;
 
 export const PATH  = {
-    searchTracks : `${BASE_URL[ENV]}/searchtracks`
+    searchTracks : `${BASE_URL[ENV]}/searchtracks`,
+    trendingTracks : `${BASE_URL[ENV]}/trendingtracks`
 }

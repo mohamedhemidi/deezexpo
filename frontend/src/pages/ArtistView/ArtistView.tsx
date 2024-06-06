@@ -149,7 +149,7 @@ const ArtistView = () => {
         </TopTracks>
       </SectionTop>
       <SectionBottom>
-        {data.top_albums.map((alb: any) => {
+        {/* {data.top_albums.map((alb: any) => {
           return (
             <Card
               id={alb.id}
@@ -159,7 +159,7 @@ const ArtistView = () => {
               picture={alb.cover_xl}
             />
           );
-        })}
+        })} */}
       </SectionBottom>
     </Container>
   );
